@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <link rel="stylesheet" href="./font/css/open-iconic-bootstrap.min.css" />
+    <title>Students from Azure Web API</title>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a id="loginLink" class="nav-link" href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <h2 class="mt-5">Students by Grade</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <div id="gradeList" class="list-group">
+            <a href="#" class="list-group-item list-group-item-action"
+              >First item</a
+            >
+            <a href="#" class="list-group-item list-group-item-action"
+              >Second item</a
+            >
+            <a href="#" class="list-group-item list-group-item-action"
+              >Third item</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <div id="students">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <!-- <th>id</th> -->
+                  <th>Student id</th>
+                  <th>First name</th>
+                  <th>Surname</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody id="studentRows">
+                <!-- student Rows to be inserted here -->
+              </tbody>
+            </table>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#studentFormDialog"
+            id="AddstudentButton"
+          >
+            Add student
+          </button>
+        </div>
+      </div>
+
+      <!-- Bootstrap Modals -->
+
+      <!-- Login Dialog Modal -->
+      <div class="modal fade" id="LoginDialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Login</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="username" class="form-control" id="username" />
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="password" />
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button
+                onclick="login()"
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Login
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Login Modal -->
+
+      <!-- student Form Dialog Modal -->
+      <div class="modal fade" id="studentFormDialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title" id="studentFormTitle">
+                Add or Update a student
+              </h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="stud_fname">First name:</label>
+                <input type="text" class="form-control" id="stud_fname" />
+              </div>
+              <div class="form-group">
+                <label for="stud_sname">Surname:</label>
+                <input type="text" class="form-control" id="stud_sname" />
+              </div>
+              <div class="form-group">
+                <label for="stud_email">Email:</label>
+                <input type="email" class="form-control" id="stud_email" />
+              </div>
+
+              <input type="hidden" id="stud_id" value="0" />
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button
+                onclick="addOrUpdateStudent()"
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Submit
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Login Modal -->
+    </div>
+    <script src="javascript/fetch.js"></script>
+    <script src="javascript/user.js"></script>
+    <script src="javascript/student.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
